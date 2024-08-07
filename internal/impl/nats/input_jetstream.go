@@ -184,6 +184,11 @@ func newJetStreamReaderFromConfig(conf *service.ParsedConfig, mgr *service.Resou
 			return nil, err
 		}
 	}
+
+	if j.queue != "" && j.durable != "" {
+		return nil, fmt.Errorf("both 'queue' and 'durable' cannot be set simultaneously")
+	}
+	
 	if conf.Contains("bind") {
 		if j.bind, err = conf.FieldBool("bind"); err != nil {
 			return nil, err
