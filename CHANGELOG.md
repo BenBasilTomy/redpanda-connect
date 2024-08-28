@@ -3,7 +3,14 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## 4.33.0 - TBD
+## 4.33.1 - TBD
+
+### Fixed
+
+- The `schema_registry` output now allows pushing schemas if the target Schema Registry instance is in `IMPORT` mode. (@mihaitodor)
+- Fixed an issue where the `azure_blob_storage` input would fail to delete blobs when using `targets_input` with `delete_objects: true`. (@mihaitodor)
+
+## 4.33.0 - 2024-08-13
 
 ### Added
 
@@ -13,6 +20,9 @@ All notable changes to this project will be documented in this file.
 - New experimental `ockam_kafka` input and output. (@mrinalwadhwa, @davide-baldo)
 - Field `credentials_json` added to all GCP components. (@tomasz-sadura)
 - (Benthos) The `list` subcommand now supports the format `jsonschema`. (@Jeffail)
+- New experimental `schema_registry` input and output. (@mihaitodor)
+- New experimental `qdrant` output. (@Anush008)
+- (Benthos) The `--set` run flag now supports structured values, e.g. `--set input={}`. (@Jeffail)
 
 ## 4.32.1 - 2024-07-24
 

@@ -65,18 +65,28 @@ websocket
 workflow
 
 # Broker and operational types
+branch
 broker
+catch
+parallel
+processors
 switch
+for_each
 drop
 batched
 resource
 inproc
+insert_part
 sequence
 read_until
 sync_response
+try
 drop_on
 fallback
 reject
 reject_errored
 retry
 switch
+none
+while
+

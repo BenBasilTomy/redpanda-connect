@@ -5,8 +5,8 @@ builds:
     main: cmd/redpanda-connect/main.go
     binary: redpanda-connect
     goos: [ windows, darwin, linux, freebsd, openbsd ]
-    goarch: [ amd64, arm, arm64 ]
-    goarm: [ 6, 7 ]
+    goarch: [ amd64, arm64 ]
+    # goarm: [ 6, 7 ]
     hooks:
       post:
         # The binary is signed and notarized when running a production release, but for snapshot builds notarization is
@@ -32,19 +32,6 @@ builds:
 
   - id: connect-cloud
     main: cmd/redpanda-connect-cloud/main.go
-    binary: redpanda-connect
-    goos: [ darwin, linux ]
-    goarch: [ amd64, arm64 ]
-    env:
-      - CGO_ENABLED=0
-    ldflags: >
-      -s -w
-      -X main.Version={{.Version}}
-      -X main.DateBuilt={{.Date}}
-      -X main.BinaryName=redpanda-connect
-
-  - id: connect-community
-    main: cmd/redpanda-connect-community/main.go
     binary: redpanda-connect
     goos: [ darwin, linux ]
     goarch: [ amd64, arm64 ]
@@ -85,15 +72,6 @@ archives:
     builds: [ connect-cloud ]
     format: tar.gz
     name_template: 'redpanda-connect-cloud_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
-    files:
-      - README.md
-      - CHANGELOG.md
-      - licenses
-
-  - id: connect-community
-    builds: [ connect-community ]
-    format: tar.gz
-    name_template: 'redpanda-connect-community_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
     files:
       - README.md
       - CHANGELOG.md
